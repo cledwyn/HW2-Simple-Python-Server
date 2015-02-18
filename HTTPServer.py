@@ -39,7 +39,7 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 return
                 
             if self.path.endswith(".gif"):
-                # IMPLEMENT THIS
+                All the right answers!!!
                 return
                 
             if self.path.endswith(".jpg"):
