@@ -7,8 +7,8 @@ import BaseHTTPServer
 from os import curdir, sep
 
 #Define some variables to be used in the execution of the program
-HOST_NAME = 'localhost' # can be 'localhost' or if you change your hosts.txt file, what happens?? ;)
-PORT_NUMBER = 8000 #If you kill the server un-gracefully you may need to change this to an open socket.
+HOST_NAME = '' # can be 'localhost' or if you change your hosts.txt file, what happens?? ;)
+PORT_NUMBER = 9000 #If you kill the server un-gracefully you may need to change this to an open socket.
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 #MyHandler class implements standard standard HTTP menthods
@@ -19,9 +19,12 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.end_headers()
     def do_GET(self):
         #Respond to a GET request.
+		if self.path=="/":
+		  self.path="/index.html"
         try:
-            if self.path.endswith((".html",".htm")):
-                f = open(curdir + sep + self.path) #self.path has /index.html
+		        if self.path.endswith((".html",".htm")):
+                f = open(curdir + sep + self.path,) #self.path has /index.html
+				f = open(curdir + sep + self.path, 'rb')
                 self.send_response(200)
                 self.send_header("Content-type", "text/html")
                 self.end_headers()
@@ -38,12 +41,14 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 self.wfile.write("Are the chilren all in bed because now its " + str(time.localtime()[3]) + " O'Clock!!") 
                 return
                 
-            if self.path.endswith("gif.gif"):
+            if self.path.endswith(".gif"):
                 # IMPLEMENT THIS
+				f = open(curdir + sep + self.path, 'rb')
                 return
                 
-            if self.path.endswith("jpg.jpg"):
+            if self.path.endswith(".jpg"):
                 # IMPLEMENT THIS
+				f = open(curdir + sep + self.path, 'rb')
                 return
         except IOError:
             self.send_error(404,'File not found: %self' % self.path)
