@@ -7,8 +7,8 @@ import BaseHTTPServer
 from os import curdir, sep
 
 #Define some variables to be used in the execution of the program
-HOST_NAME = '' # can be 'localhost' or if you change your hosts.txt file, what happens?? ;)
-PORT_NUMBER = 9001 #If you kill the server un-gracefully you may need to change this to an open socket.
+HOST_NAME = 'localhost' # can be 'localhost' or if you change your hosts.txt file, what happens?? ;)
+PORT_NUMBER = 8000 #If you kill the server un-gracefully you may need to change this to an open socket.
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 #MyHandler class implements standard standard HTTP menthods
@@ -38,11 +38,11 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 self.wfile.write("Are the chilren all in bed because now its " + str(time.localtime()[3]) + " O'Clock!!") 
                 return
                 
-            if self.path.endswith(".gif"):
+            if self.path.endswith("gif.gif"):
                 # IMPLEMENT THIS
                 return
                 
-            if self.path.endswith(".jpg"):
+            if self.path.endswith("jpg.jpg"):
                 # IMPLEMENT THIS
                 return
         except IOError:
