@@ -19,12 +19,12 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.end_headers()
     def do_GET(self):
         #Respond to a GET request.
-		if self.path=="/":
-		  self.path="/index.html"
+        if self.path=="/":
+            self.path="/index.html"
         try:
-		        if self.path.endswith((".html",".htm")):
-                f = open(curdir + sep + self.path,) #self.path has /index.html
-				f = open(curdir + sep + self.path, 'rb')
+            if self.path.endswith((".html",".htm")):
+                #f = open(curdir + sep + self.path,) #self.path has /index.html
+                f = open(curdir + sep + self.path, 'rb')
                 self.send_response(200)
                 self.send_header("Content-type", "text/html")
                 self.end_headers()
@@ -43,12 +43,12 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 
             if self.path.endswith(".gif"):
                 # IMPLEMENT THIS
-				f = open(curdir + sep + self.path, 'rb')
+                f = open(curdir + sep + self.path, 'rb')
                 return
                 
             if self.path.endswith(".jpg"):
                 # IMPLEMENT THIS
-				f = open(curdir + sep + self.path, 'rb')
+                f = open(curdir + sep + self.path, 'rb')
                 return
         except IOError:
             self.send_error(404,'File not found: %self' % self.path)
